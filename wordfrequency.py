@@ -17,8 +17,8 @@ class WordFrequency():
             word = reader.get_word()
 
     def frequency(self,word):
-        if word in words:
-            return words[word]
+        if word in self._words:
+            return self._words[word]
         else:
             return -1
 
@@ -29,7 +29,7 @@ class WordFrequency():
         return min(self._words.iteritems(),key=operator.itemgetter(1))[0]
 
     def words(self):
-        return sorted(self._words.keys())
+        return sorted(self._words.keys(),key=operator.itemgetter(1))
 
     def save(self,filename):
 
