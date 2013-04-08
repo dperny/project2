@@ -1,6 +1,5 @@
 from word import Word
 from wordfrequency import *
-import math
 
 class WordCloud:
     def __init__(self,count,frequency,stop_words):
@@ -15,7 +14,7 @@ class WordCloud:
         count += 1
         while i <= count:
             if words[-i] not in stop_words:
-                outwords.append(Word(words[-1],frequency.frequency(words[-i])))
+                outwords.append(Word(words[-i],frequency.frequency(words[-i])))
                 i += 1
             else:
                 i += 1
@@ -25,18 +24,23 @@ class WordCloud:
     def save(self,filename):
         outstring = ''
         for word in self._words:
-            print(str(word))
-            outstring = outstring + str(word)
+            outstring = outstring + str(word) + "\n"
         with open(filename,'w') as fp:
             fp.write(outstring)
 
 class HtmlWordCloud(WordCloud):
+    def __init__(self,count,frequency,stop_words):
+        super(HtmlWordCloud,self).__init__(count,frequency,stop_words)
+    
     # override
     def save(self,filename):
+
         outstring = "<html><body><table>"
         for word in self._words:
             outstring = outstring + self._htmlize(word)
-        outstring = outstring = "</table></body></html>"
+        outstring = outstring + "</table></body></html>"
+        with open(filename,'w') as fp:
+            fp.write(outstring)
     
     def _htmlize(self,word):
-        return '<tr><td style="font-size:' + str(math.floor(math.log(word.size))) + '">' + word.text + "</td></tr>"
+        return '<tr><td style="font-size:' + str(word.size) + '">' + word.text + "</td></tr>"
