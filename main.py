@@ -7,11 +7,13 @@ STOP_WORDS = ["a","an","A","An","The","and","And","but","But","that","That","whi
 def main(args):
     Freq = WordFrequency()
 
+    Freq.open(args[1])
+
     Cloud = WordCloud(30,Freq,STOP_WORDS)
     Cloud.save("cloud.txt")
     
     HtmlCloud = HtmlWordCloud(30,Freq,STOP_WORDS)
-    HtmlCloud.save("cloud.html"
+    HtmlCloud.save("cloud.html")
 
 if __name__ == "__main__":
     main(sys.argv)

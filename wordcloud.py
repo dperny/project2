@@ -6,7 +6,7 @@ class WordCloud:
     def __init__(self,count,frequency,stop_words):
         self._min = frequency.minimum()
         self._max = frequency.maximum()
-        self._words = self._wordbuilder(frequency,count,stop_words)
+        self._words = self._wordbuilder(count,frequency,stop_words)
     
     def _wordbuilder(self,count,frequency,stop_words):
         words = frequency.words()
@@ -25,6 +25,7 @@ class WordCloud:
     def save(self,filename):
         outstring = ''
         for word in self._words:
+            print(str(word))
             outstring = outstring + str(word)
         with open(filename,'w') as fp:
             fp.write(outstring)

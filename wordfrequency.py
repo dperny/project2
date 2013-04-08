@@ -23,13 +23,14 @@ class WordFrequency():
             return -1
 
     def maximum(self):
-        return max(self._words.iteritems(),key=operator.itemgetter(1))[0]
+        return self.words()[-1] 
 
     def minimum(self):
-        return min(self._words.iteritems(),key=operator.itemgetter(1))[0]
+        return self.words()[0] 
 
     def words(self):
-        return sorted(self._words.keys(),key=operator.itemgetter(1))
+        rlist = sorted(self._words.items(),key=operator.itemgetter(1))
+        return [i[0] for i in rlist]
 
     def save(self,filename):
 
