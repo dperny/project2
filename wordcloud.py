@@ -6,8 +6,8 @@ import random
 
 class WordCloud:
     def __init__(self,count,frequency,stop_words):
-        self._min = frequency.minimum()
-        self._max = frequency.maximum()
+        self._min = frequency.frequency(frequency.minimum())
+        self._max = frequency.frequency(frequency.maximum())
         self._count = count
         self._words = self._wordbuilder(count,frequency,stop_words)
     
